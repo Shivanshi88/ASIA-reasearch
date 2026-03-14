@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import heroImage from "../assets/images/hero.jpg"; // Use one high-quality image
+import heroImage from "../assets/images/hero2.jpg"; // Use one high-quality image
 
 const Hero = () => {
   const [imagesLoaded, setImagesLoaded] = useState(false);

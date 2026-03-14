@@ -4,7 +4,6 @@ import IFAD from "../assets/clients/IFAD.jpg";
 import Orient from "../assets/clients/Orient.jpg";
 import Rdi from "../assets/clients/Rdi.webp";
 import Unilever from "../assets/clients/Unilever-Logo.png";
-import image from "../assets/clients/image.png";
 import imrb from "../assets/clients/imrb.webp";
 import newLogo from "../assets/clients/new.png";
 import sfac from "../assets/clients/sfac.jpg";
@@ -17,7 +16,6 @@ const OurClients = () => {
     { logo: Orient, name: "Orient" },
     { logo: Rdi, name: "RDI" },
     { logo: Unilever, name: "Unilever" },
-    { logo: image, name: "Market Research" },
     { logo: imrb, name: "IMRB" },
     { logo: newLogo, name: "New Client" },
     { logo: sfac, name: "SFAC" },
@@ -49,7 +47,7 @@ const OurClients = () => {
                   <img
                     src={client.logo}
                     alt={client.name}
-                    className="max-h-full max-w-full object-contain filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110"
+                    className="max-h-full max-w-full object-contain transition-all duration-700 group-hover:scale-110"
                   />
                 </div>
               ))}

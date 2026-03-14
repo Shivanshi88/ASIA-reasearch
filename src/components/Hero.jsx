@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import heroImage from "../assets/images/hero2.jpg"; // Use one high-quality image
+import heroImage from "../assets/images/hero2.jpg";// yet to added if client send real resume
 
 const Hero = () => {
   const [imagesLoaded, setImagesLoaded] = useState(false);

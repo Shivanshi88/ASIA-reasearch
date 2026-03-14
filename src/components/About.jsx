@@ -1,4 +1,10 @@
 import { useState, useEffect } from "react";
+import demandImg from "../assets/images/ui/demand_forecasting.png";
+import retailImg from "../assets/images/ui/retail_tracking.png";
+import productImg from "../assets/images/ui/product_research.png";
+
+// Using professional photography URLs for remaining images due to quota limits
+const marketImg = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop";
 
 const About = () => {
   const [statsVisible, setStatsVisible] = useState(false);
@@ -9,10 +15,10 @@ const About = () => {
   }, []);
 
   const services = [
-    { title: "Demand Forecasting", desc: "Predicting market demand to support better planning.", icon: "📈" },
-    { title: "Retail Tracking", desc: "Monitoring retail performance and consumer behavior.", icon: "🏪" },
-    { title: "Product Research", desc: "Understanding product potential before market launch.", icon: "🔬" },
-    { title: "Market Analysis", desc: "Providing accurate insights for business growth.", icon: "📊" }
+    { title: "Demand Forecasting", desc: "Predicting market demand to support better planning.", img: demandImg },
+    { title: "Retail Tracking", desc: "Monitoring retail performance and consumer behavior.", img: retailImg },
+    { title: "Product Research", desc: "Understanding product potential before market launch.", img: productImg },
+    { title: "Market Analysis", desc: "Providing accurate insights for business growth.", img: marketImg }
   ];
 
   const stats = [
@@ -23,68 +29,81 @@ const About = () => {
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-b from-blue-50 to-white relative overflow-hidden">
-      {/* Background pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(120,119,198,0.1),transparent),radial-gradient(circle_at_80%_20%,rgba(120,119,198,0.1),transparent)]" />
+    <section className="py-24 bg-white relative overflow-hidden">
+      {/* Subtle background element */}
+      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-blue-50/50 rounded-bl-[100px] -z-10" />
       
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-900 to-indigo-900 bg-clip-text text-transparent mb-6">
+        <div className="max-w-3xl mb-16">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-blue-950 mb-6 tracking-tight">
             About Asia Pacific Research Bureau
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            A full service marketing and social research organization headquartered in Delhi. 
-            Pioneering work in demand forecasting, retail performance tracking, and new product development.
+          <p className="text-xl text-gray-600 leading-relaxed font-medium">
+            A full-service marketing and social research organization. 
+            We pioneer demand forecasting, retail tracking, and product development strategy.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left: Content + Stats */}
-          <div className="space-y-8 lg:order-2">
-            <div className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-blue-100">
-              <p className="text-lg text-gray-700 leading-relaxed mb-8">
-                We provide reliable research insights and market intelligence to help businesses 
-                make informed strategic decisions and understand market realities.
-              </p>
-              
-              {/* Stats */}
-              <div className="grid grid-cols-2 gap-6">
-                {stats.map((stat, index) => (
-                  <div 
-                    key={stat.label}
-                    className={`group p-6 rounded-2xl bg-gradient-to-b from-white to-blue-50 hover:from-blue-50 hover:to-indigo-50 transition-all duration-500 border hover:shadow-2xl cursor-default ${
-                      statsVisible ? `animate-slide-up delay-${index * 100}` : 'opacity-0'
-                    }`}
-                  >
-                    <div className="text-3xl font-bold bg-gradient-to-r from-blue-900 to-indigo-900 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform">
-                      {stat.num}
-                    </div>
-                    <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Right: Services Grid */}
-          <div className="lg:order-1 space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {services.map((service, index) => (
-                <div
-                  key={service.title}
-                  className="group p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl hover:-translate-y-3 transition-all duration-500 border border-gray-100 hover:border-blue-200 cursor-pointer h-full"
-                >
-                  <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                    {service.icon}
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-900 transition-colors">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left: Services Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {services.map((service, index) => (
+              <div
+                key={service.title}
+                className="group relative h-72 rounded-[32px] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer"
+              >
+                <img 
+                  src={service.img} 
+                  alt={service.title}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 p-6 w-full">
+                  <h3 className="text-white text-xl font-bold mb-2 group-hover:translate-x-2 transition-transform duration-300">
                     {service.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">{service.desc}</p>
+                  <p className="text-blue-100 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 line-clamp-2">
+                    {service.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Right: Content + Stats */}
+          <div className="space-y-10">
+            <div className="space-y-6">
+              <h3 className="text-2xl font-bold text-blue-900 uppercase tracking-widest text-sm">Our Strength</h3>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                We provide reliable research insights and market intelligence to help businesses 
+                make informed strategic decisions and understand market realities. Our expertise 
+                lies in merging traditional research methods with modern data analytics.
+              </p>
+            </div>
+              
+            {/* Stats */}
+            <div className="grid grid-cols-2 gap-8">
+              {stats.map((stat, index) => (
+                <div 
+                  key={stat.label}
+                  className={`relative ${
+                    statsVisible ? `animate-slide-up` : 'opacity-0'
+                  }`}
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="text-5xl font-black text-blue-900 mb-1">
+                    {stat.num}
+                  </div>
+                  <div className="text-sm text-blue-600 font-bold uppercase tracking-wider">{stat.label}</div>
+                  <div className="absolute -left-4 top-2 w-1 h-12 bg-blue-100" />
                 </div>
               ))}
             </div>
+
+            <button className="bg-blue-900 text-white px-10 py-4 rounded-full font-bold hover:bg-blue-800 transition-colors shadow-lg shadow-blue-900/20">
+              Read Our Full Story
+            </button>
           </div>
         </div>
       </div>
@@ -93,7 +112,7 @@ const About = () => {
         @keyframes slide-up {
           from {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(20px);
           }
           to {
             opacity: 1;
@@ -101,12 +120,8 @@ const About = () => {
           }
         }
         .animate-slide-up {
-          animation: slide-up 0.8s ease-out forwards;
+          animation: slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-        .delay-0 { animation-delay: 0s; }
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
       `}</style>
     </section>
   );

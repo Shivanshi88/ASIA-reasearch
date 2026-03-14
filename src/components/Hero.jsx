@@ -1,28 +1,8 @@
 import React, { useEffect, useState } from "react";
-import heroImage from "../assets/images/hero.jpg";
-import heroImage2 from "../assets/images/hero2.jpg";
-import heroImage3 from "../assets/images/hero3.jpg";
+import heroImage from "../assets/images/hero.jpg"; // Use one high-quality image
 
 const Hero = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [imagesLoaded, setImagesLoaded] = useState(false);
-
-  const slides = [heroImage, heroImage2, heroImage3];
-
-  // Different rounded shapes (no hexagon)
-  const shapes = [
-    "ellipse(100% 110% at 50% -5%)", // tall oval
-    "circle(55%)",                   // circle
-    "ellipse(120% 95% at 50% 5%)",   // wide oval
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(
-      () => setCurrentSlide((prev) => (prev + 1) % slides.length),
-      3000
-    );
-    return () => clearInterval(interval);
-  }, [slides.length]);
 
   useEffect(() => {
     const timer = setTimeout(() => setImagesLoaded(true), 100);
@@ -32,82 +12,75 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="pt-32 pb-24 bg-gradient-to-br from-blue-50 via-white to-indigo-50 relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-blue-50 py-20 px-6 relative overflow-hidden"
     >
-      {/* Floating gradient blobs */}
+      {/* Subtle floating geometric elements for unique depth */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-2xl shadow-lg animate-float-slow opacity-75 blur-sm" />
-        <div className="absolute top-40 right-20 w-16 h-16 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full shadow-md animate-float opacity-60 blur-sm" />
-        <div className="absolute bottom-32 left-1/4 w-20 h-20 bg-gradient-to-t from-purple-400 to-pink-500 rounded-xl shadow-lg animate-bob blur-sm" />
-        <div className="absolute bottom-20 right-16 w-14 h-14 bg-gradient-to-b from-orange-400 to-red-500 rounded-2xl shadow-md animate-float-slow opacity-70 blur-sm" />
+        <div className="absolute -top-20 -left-20 w-40 h-40 bg-gradient-to-r from-blue-200/30 to-indigo-200/30 rounded-full mix-blend-multiply filter blur-xl animate-pulse" />
+        <div className="absolute top-1/2 right-10 w-24 h-24 bg-gradient-to-b from-emerald-200/20 to-teal-200/20 rounded-2xl mix-blend-soft-light filter blur-lg animate-float-slow" />
+        <div className="absolute -bottom-20 left-1/2 w-32 h-32 bg-gradient-to-t from-purple-200/30 to-pink-200/30 rounded-xl mix-blend-multiply filter blur-xl animate-bob-slow" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
-        {/* Left Content */}
-        <div
-          className={`space-y-6 ${
-            imagesLoaded ? "animate-slide-in-left" : "opacity-0"
-          }`}
-        >
-          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-gray-900 to-blue-900 bg-clip-text text-transparent leading-tight">
-            Asia Pacific Research Bureau
-          </h1>
+      <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10 w-full">
+        {/* Left: Clean typography-focused content */}
+        <div className={`space-y-8 ${imagesLoaded ? "animate-fade-in-up" : "opacity-0"}`}>
+          <div>
+            <h1 className="text-5xl lg:text-7xl font-light text-slate-900 leading-[1.05] tracking-tight mb-4">
+              Asia Pacific
+            </h1>
+            <h1 className="text-5xl lg:text-7xl font-black bg-gradient-to-r from-blue-900 to-indigo-900 bg-clip-text text-transparent leading-[1.05]">
+              Research Bureau
+            </h1>
+          </div>
 
-          <p className="text-xl text-gray-600 leading-relaxed max-w-lg">
-            A full service marketing and social research organization delivering
-            accurate insights, demand forecasting and market analysis to help
-            businesses make better decisions.
+          <p className="text-xl text-slate-600 leading-relaxed max-w-md">
+            Delivering precise insights, demand forecasting, and market analysis to empower smarter business decisions.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4">
-            <button className="group bg-gradient-to-r from-blue-900 to-blue-800 text-white px-8 py-4 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
-              Our Services
+          <div className="flex flex-col sm:flex-row gap-4 pt-2">
+            <button className="group bg-slate-900 text-white px-8 py-4 rounded-xl font-medium hover:bg-slate-800 hover:shadow-xl transition-all duration-300 shadow-lg">
+              Our Services →
             </button>
-
-            <button className="border-2 border-blue-900 text-blue-900 px-8 py-4 rounded-xl hover:bg-blue-900 hover:text-white transition-all duration-300 hover:shadow-lg font-medium">
+            <button className="border-2 border-slate-900 text-slate-900 px-8 py-4 rounded-xl font-medium hover:bg-slate-900 hover:text-white transition-all duration-300 hover:shadow-lg">
               Contact Us
             </button>
           </div>
         </div>
 
-        {/* Right slider with changing shape */}
-        <div
-          className={`flex justify-center ${
-            imagesLoaded ? "animate-slide-in-right" : "opacity-0"
-          }`}
-        >
-          <div className="relative w-full max-w-md group">
-            <div
-              className="hero-shape w-full h-80 md:h-96 mx-auto shadow-2xl hover:shadow-3xl transition-all duration-1000 rounded-3xl overflow-hidden"
-              style={{
-                clipPath: shapes[currentSlide],
-                background: "linear-gradient(45deg, #3b82f6, #6366f1)",
-              }}
-            >
-              <img
-                src={slides[currentSlide]}
-                alt="Market Research"
-                className="w-full h-full object-cover transition-all duration-1000 hover:scale-110 cursor-pointer"
-              />
-            </div>
-
-            {/* Dots */}
-            <div className="flex gap-2 mt-6 justify-center">
-              {slides.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentSlide
-                      ? "bg-blue-900 w-8 scale-110 shadow-lg"
-                      : "bg-gray-300 hover:bg-blue-300"
-                  }`}
-                />
-              ))}
-            </div>
+        {/* Right: Single image with unique subtle parallax container */}
+        <div className={`relative ${imagesLoaded ? "animate-fade-in-right delay-200" : "opacity-0"}`}>
+          <div className="relative w-full h-80 lg:h-96 mx-auto group cursor-pointer">
+            {/* Inner ring for unique focus glow */}
+            <div className="absolute inset-0 w-full h-full rounded-3xl bg-gradient-to-r from-blue-500/10 to-indigo-500/10 blur-xl group-hover:scale-105 transition-all duration-500 -z-10" />
+            <img
+              src={heroImage}
+              alt="Asia Pacific Research Bureau insights"
+              className="w-full h-full object-cover rounded-3xl shadow-2xl group-hover:scale-105 group-hover:rotate-1 transition-all duration-700 shadow-blue-200/50 hover:shadow-blue-300/70"
+            />
+            {/* Subtle accent line */}
+            <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full shadow-md" />
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes float-slow {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-10px) rotate(2deg); }
+        }
+        @keyframes bob-slow {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-15px); }
+        }
+        @keyframes fade-in-up {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-float-slow { animation: float-slow 20s ease-in-out infinite; }
+        .animate-bob-slow { animation: bob-slow 16s ease-in-out infinite; }
+        .animate-fade-in-up { animation: fade-in-up 0.8s ease-out forwards; }
+        .animate-fade-in-right { animation: fade-in-up 0.8s ease-out 0.2s forwards; }
+      `}</style>
     </section>
   );
 };
